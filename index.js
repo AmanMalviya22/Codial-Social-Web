@@ -1,14 +1,13 @@
-const express=require('express');
-const app=express();
-const port=8000;
+const express = require('express');
+const app = express();
+const port = 8000;
 
+// Use express router
+app.use('/', require('./routes/index'));
 
-//use express router
-app.use('./', require('./routes/index'));
-
-app.listen(port,function(err){
-    if(err){
-        console.log(`Error in Listening ${err}`)
-    }
-    console.log(`server is started on port ${port}`);
-})
+app.listen(port, function(err) {
+  if (err) {
+    console.log(`Error in listening ${err}`);
+  }
+  console.log(`Server is started on port ${port}`);
+});
