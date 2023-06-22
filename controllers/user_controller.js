@@ -3,3 +3,16 @@ module.exports.profile=function(req,res){
     
     return res.render('user_profile',{title:"user profile"});
 }
+
+
+//controller for user signup
+module.exports.signup=function(req,res){
+    
+    return res.render('user_sign_up',{title:"sign up"});
+}
+
+//controller for user signin
+module.exports.signin=function(req,res){
+    
+    return res.render('user_sign_in',{title:"sign in"});
+}
