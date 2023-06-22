@@ -3,6 +3,8 @@ const app = express();
 const port = 8000;
 //require layout for implementing layouts
 const expressLayouts=require('express-ejs-layouts');
+//tell app to use assets folder
+app.use(express.static('./assets'));
 // Use express router
 app.use(expressLayouts);
 app.use('/', require('./routes/index'));
