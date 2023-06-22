@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const port = 8000;
+const db=require('./config/mongoose');
 //require layout for implementing layouts
 const expressLayouts=require('express-ejs-layouts');
 //tell app to use assets folder
