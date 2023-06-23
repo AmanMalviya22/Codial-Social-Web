@@ -1,30 +1,49 @@
-//controller for profile route and exported it for global uses
-module.exports.profile=function(req,res){
-    
-    return res.render('user_profile',{title:"user profile"});
-}
+const User = require('../models/user');
 
+// Controller for profile route and exported it for global use
+module.exports.profile = function (req, res) {
+  return res.render('user_profile', { title: 'User Profile' });
+};
 
-//controller for user signup
-module.exports.signup=function(req,res){
-    
-    return res.render('user_sign_up',{title:"sign up"});
-}
+// Controller for user signup
+module.exports.signup = function (req, res) {
+  return res.render('user_sign_up', { title: 'Sign Up' });
+};
 
-//controller for user signin
-module.exports.signin=function(req,res){
-    
-    return res.render('user_sign_in',{title:"sign in"});
-}
+// Controller for user signin
+module.exports.signin = function (req, res) {
+  return res.render('user_sign_in', { title: 'Sign In' });
+};
 
-// sign up controller
-module.exports.create=function(req,res){
-    //later
-}
+// Sign up controller
+module.exports.create = function (req, res) {
+  if (req.body.password !== req.body.confirmPassword) {
+    return res.redirect('back');
+  }
 
+  User.findOne({ email: req.body.email })
+    .then((user) => {
+      if (user) {
+        // User already exists, redirect to sign-in page
+        return res.redirect('/users/sign-in');
+      } else {
+        // Create a new user
+        // return 
+        User.create(req.body)
+        //   .then(() => {
+            // User created successfully, redirect to sign-in page
+            return res.redirect('/users/sign-in');
+        //   });
+      }
+    })
+    .catch((err) => {
+      console.log('Error in creating user:', err);
+      return res.redirect('back');
+    });
+};
 
-// sign in controller
-module.exports.createSession=function(req,res){
-    // later
-}
-
+// Sign in controller
+module.exports.createSession = function (req, res) {
+  // Example code: Redirect to home page
+  res.redirect('/');
+};

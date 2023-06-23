@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 // Connection URL for MongoDB
-const mongoURI = 'mongodb://127.0.0.1:27017/mydatabase';
+const mongoURI = 'mongodb://127.0.0.1:27017/codial-development';
 
 // Establishing the database connection
 async function connectToDatabase() {
