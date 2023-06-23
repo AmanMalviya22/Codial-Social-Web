@@ -9,5 +9,6 @@ router.get('/sign-up',userController.signup);
 //when accessing localhost:8000/user/signin goes below route
 router.get('/sign-in',userController.signin);
 router.post('/create',userController.create);
+router.post('/create-session',userController.createSession);
 //export the router
 module.exports = router;
