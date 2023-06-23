@@ -1,7 +1,11 @@
-//controller for home route and exported it
 module.exports.home = function(req, res) {
-   return res.render('home',{
-    title:"Home"
-   });
- };
- 
+  // Printing cookie on console
+  console.log(req.cookies);
+
+  // Setting cookie
+  res.cookie('c1', 10);
+
+  return res.render('home', {
+    title: "Home"
+  });
+};

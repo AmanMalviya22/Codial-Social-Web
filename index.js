@@ -1,11 +1,19 @@
 const express = require('express');
+//require cookie-parse for creating and updating cookie
+const cookieParser=require('cookie-parser');
 const app = express();
 const port = 8000;
+
 const db=require('./config/mongoose');
+//tell app to use middleware
+app.use(express.urlencoded());
+//tell app to use cookie parser
+app.use(cookieParser());
 //require layout for implementing layouts
 const expressLayouts=require('express-ejs-layouts');
 //tell app to use assets folder
 app.use(express.static('./assets'));
+
 // Use express router
 app.use(expressLayouts);
 // extract style and scripts form sub pages into the layout
