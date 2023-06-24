@@ -1,11 +1,16 @@
 const express = require('express');
+
 const router = express.Router();
-//require controllers/home_controller and use it 
 const homeController = require('../controllers/home_controller');
-// request with localhost:8000 goes to this route
+
+console.log('router loaded');
+
 
 router.get('/', homeController.home);
-// request with localhost:8000/users   goes to this route
-router.use('/users',require('./users'));
-//exports the router
+router.use('/users', require('./users'));
+
+// for any further routes, access from here
+// router.use('/routerName', require('./routerfile));
+
+
 module.exports = router;
