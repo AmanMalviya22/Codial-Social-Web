@@ -86,29 +86,7 @@ module.exports.create = function (req, res) {
 //   });
 // };
 
-// Sign in controller
+// Sign in and create a session for the user
 module.exports.createSession = function (req, res) {
-  // Find the user by email
-  User.findOne({ email: req.body.email })
-    .then((user) => {
-      if (user && user.password) {
-        // User found and password is defined
-        if (user.password === req.body.password) {
-          res.cookie("user_id", user._id);
-          // Password matches, create the session and redirect to the profile page
-          // Your session creation logic goes here
-          res.redirect("/users/profile");
-        } else {
-          // Password does not match, redirect back to the sign-in page with an error message
-          res.redirect("/users/sign-in");
-        }
-      } else {
-        // User not found or password is undefined, redirect back to the sign-in page with an error message
-        res.redirect("/users/sign-in");
-      }
-    })
-    .catch((err) => {
-      console.log("Error in signing in:", err);
-      res.redirect("/users/sign-in");
-    });
+   return res.redirect('/');
 };
