@@ -1,9 +1,28 @@
 const User = require("../models/user");
 
 // Controller for profile route and exported it for global use
-module.exports.profile = function (req, res) {
-  return res.render("user_profile", { title: "User Profile" });
+module.exports.profile = async function (req, res) {
+  try {
+    if (req.cookies.user_id) {
+      const user = await User.findById(req.cookies.user_id);
+      if (user) {
+        return res.render("user_profile", {
+          title: "user profile",
+          user: user,
+        });
+      } else {
+        return res.redirect("/users/sign-in");
+      }
+    } else {
+      return res.redirect("/users/sign-in");
+    }
+  } catch (err) {
+    console.error(err);
+    // Handle the error and send an appropriate response
+    return res.status(500).send("Internal Server Error");
+  }
 };
+
 
 // Controller for user signup
 module.exports.signup = function (req, res) {
@@ -61,37 +80,35 @@ module.exports.create = function (req, res) {
 //     }
 //     else{
 //         //handle user not found
-         
+
 //         return res.redirect('back');
 //     }
 //   });
 // };
 
-
 // Sign in controller
 module.exports.createSession = function (req, res) {
-    // Find the user by email
-    User.findOne({ email: req.body.email })
-      .then((user) => {
-        if (user && user.password) {
-          // User found and password is defined
-          if (user.password === req.body.password) {
-            res.cookie("user_id", user._id);
-            // Password matches, create the session and redirect to the profile page
-            // Your session creation logic goes here
-            res.redirect('/users/profile');
-          } else {
-            // Password does not match, redirect back to the sign-in page with an error message
-            res.redirect('/users/sign-in');
-          }
+  // Find the user by email
+  User.findOne({ email: req.body.email })
+    .then((user) => {
+      if (user && user.password) {
+        // User found and password is defined
+        if (user.password === req.body.password) {
+          res.cookie("user_id", user._id);
+          // Password matches, create the session and redirect to the profile page
+          // Your session creation logic goes here
+          res.redirect("/users/profile");
         } else {
-          // User not found or password is undefined, redirect back to the sign-in page with an error message
-          res.redirect('/users/sign-in');
+          // Password does not match, redirect back to the sign-in page with an error message
+          res.redirect("/users/sign-in");
         }
-      })
-      .catch((err) => {
-        console.log('Error in signing in:', err);
-        res.redirect('/users/sign-in');
-      });
-  };
-  
+      } else {
+        // User not found or password is undefined, redirect back to the sign-in page with an error message
+        res.redirect("/users/sign-in");
+      }
+    })
+    .catch((err) => {
+      console.log("Error in signing in:", err);
+      res.redirect("/users/sign-in");
+    });
+};
