@@ -1,11 +1,9 @@
-module.exports.home = function(req, res) {
-  // Printing cookie on console
+module.exports.home = function(req, res){
   console.log(req.cookies);
-
-  // Setting cookie
-  res.cookie('c1', 10);
-
+  res.cookie('user_id', 25);
   return res.render('home', {
-    title: "Home"
+      title: "Home"
   });
-};
+}
+
+// module.exports.actionName = function(req, res){}
