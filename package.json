@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "connect": "^3.7.0",
     "connect-mongo": "^4.5.0",
     "cookie-parser": "^1.4.6",
     "ejs": "^3.1.9",
@@ -8,7 +9,8 @@
     "express-session": "^1.17.3",
     "mongoose": "^7.3.1",
     "passport": "^0.6.0",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "sass": "^1.63.6"
   },
   "name": "codial",
   "version": "1.0.0",
@@ -19,5 +21,9 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "aman malviya",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node-sass": "^4.11.3",
+    "node-sass": "^9.0.0"
+  }
 }
