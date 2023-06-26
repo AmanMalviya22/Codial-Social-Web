@@ -1,51 +1,19 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <style>
-    /* Styles for the header */
-    header {
-      background-color: #f1f1f1;
-      padding: 20px;
-      text-align: center;
-    }
+<header>
+  Page header
 
-    ul {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    li {
-      display: inline-block;
-      margin-right: 10px;
-    }
-
-    li a {
-      text-decoration: none;
-      color: #333;
-      padding: 5px 10px;
-      border: 1px solid #ccc;
-      border-radius: 3px;
-    }
-
-    li a:hover {
-      background-color: #333;
-      color: #fff;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <!-- Page header -->
-    <ul>
-      <% if (locals.user) { %>
-      <li><a href="/users/profile"><%= user.name %></a></li>
-      <li><a href="/users/sign-out">Sign Out</a></li>
-      <% } else { %>
-      <li><a href="/users/sign-in">Sign In</a></li>
-      <li><a href="/users/sign-up">Sign Up</a></li>
-      <% } %>
-    </ul>
-  </header>
-</body>
-</html>
+  <ul>
+    <% if(locals.user) {%>
+    <li><a href="/users/Profile"><%=user.name %></a></li>
+    <li>
+      <a href="/users/sign-out">Sign Out</a>
+    </li>
+    <% }else {%>
+    <li>
+      <a href="/users/sign-in">Sign In</a>
+    </li>
+    <li>
+      <a href="/users/sign-up">Sign Up</a>
+    </li>
+    <% } %>
+  </ul>
+</header>
