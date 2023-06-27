@@ -1,5 +1,6 @@
 const Post = require("../models/post");
-module.exports.home = function (req, res) {
+
+module.exports.home = function(req, res) {
   // console.log(req.cookies);
   // res.cookie('user_id', 25);
 
@@ -17,25 +18,29 @@ module.exports.home = function (req, res) {
   //     return res.status(500).send("An error occurred.");
   //   });
 
-
-
-
-  //populate the user of each post
-
+  // populate the user of each post
   Post.find({})
-    .populate('user')
-    .exec()
-    .then((posts) => {
+    .populate("user")
+    .populate({
+      path: "comments",
+      populate: {
+        path: "user",
+      },
+    })
+    .then(function(posts) {
       return res.render("home", {
-        title: "Home",
+        title: "codial | Home",
         posts: posts,
       });
     })
-    .catch((err) => {
+    .catch(function(err) {
       // Handle the error
       console.error(err);
       // Return an appropriate response
       return res.status(500).send("An error occurred.");
     });
 };
+
 // module.exports.actionName = function(req, res){}
+
+
