@@ -31,6 +31,8 @@ module.exports.home = function(req, res) {
       return res.render("home", {
         title: "codial | Home",
         posts: posts,
+        
+        user: req.user
       });
     })
     .catch(function(err) {

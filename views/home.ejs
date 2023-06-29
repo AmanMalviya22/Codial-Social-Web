@@ -2,7 +2,7 @@
 
 <section id="feed-posts">
   <h4>Posts</h4>
-  <% if(locals.user){ %>
+  <% if(user){ %>
   <form action="/posts/create" id="new-post-form" method="POST">
     <textarea
       name="content"
@@ -17,22 +17,20 @@
 
   <div id="posts-list-container">
     <ul>
-      <% for(post of posts){ %>
+      <% for(let post of posts){ %>
 
       <li>
         <p>
-
-            <% if(locals.user  && (locals.user.id==post.user.id )) {%>
-            <small> 
-                <a href="/post/destroy/<%=post.id  %>">x</a>
-            </small>
-            <% } %>
-          <%= post.content %>
+          <% if(user && (user._id.toString() === post.user._id.toString())) { %>
+          <small>
+            <a href="/posts/destroy/<%= post._id %>">x</a>
+          </small>
+          <% } %> <%= post.content %>
           <br />
           <small> <%= post.user.name %> </small>
         </p>
         <div class="post-comments">
-          <% if (locals.user){ %>
+          <% if (user){ %>
           <form action="/comments/create" method="POST">
             <input
               type="text"
@@ -48,20 +46,25 @@
 
           <div class="post-comments-list">
             <ul id="post-comments-<%= post._id %>">
-              <% for (comment of post.comments){%>
-
+              <% for (let comment of post.comments){ %>
               <p>
-                Comment Content : <%= comment.content %>
+                <% if(user && (user._id.toString() ===
+                comment.user._id.toString())) { %>
+                <small>
+                  <a href="/comments/destroy/<%= comment._id %>">x</a>
+                </small>
+                <% } %> Comment Content: <%= comment.content %>
                 <br />
-                <small>User Name : <%= comment.user.name %> </small>
+                <small>User Name: <%= comment.user.name %> </small>
               </p>
-              <%} %>
+              <% } %>
             </ul>
           </div>
         </div>
       </li>
 
-      <%} %>
+      <% } %>
     </ul>
   </div>
 </section>
+>
