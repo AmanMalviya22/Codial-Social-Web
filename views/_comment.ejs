@@ -1,0 +1,11 @@
+<li>
+  <p>
+    <% if(user && (user._id.toString() === comment.user._id.toString())) { %>
+    <small>
+      <a href="/comments/destroy/<%= comment._id %>">x</a>
+    </small>
+    <% } %> Comment Content: <%= comment.content %>
+    <br />
+    <small>User Name: <%= comment.user.name %> </small>
+  </p>
+</li>

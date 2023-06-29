@@ -18,53 +18,11 @@
   <div id="posts-list-container">
     <ul>
       <% for(let post of posts){ %>
+        <%- include('_post', { post: post }) %>
 
-      <li>
-        <p>
-          <% if(user && (user._id.toString() === post.user._id.toString())) { %>
-          <small>
-            <a href="/posts/destroy/<%= post._id %>">x</a>
-          </small>
-          <% } %> <%= post.content %>
-          <br />
-          <small> <%= post.user.name %> </small>
-        </p>
-        <div class="post-comments">
-          <% if (user){ %>
-          <form action="/comments/create" method="POST">
-            <input
-              type="text"
-              name="content"
-              placeholder="Type Here to add comment..."
-              required
-            />
-            <input type="hidden" name="post" value="<%= post._id %>" />
-            <input type="submit" value="Add Comment" />
-          </form>
-
-          <% } %>
-
-          <div class="post-comments-list">
-            <ul id="post-comments-<%= post._id %>">
-              <% for (let comment of post.comments){ %>
-              <p>
-                <% if(user && (user._id.toString() ===
-                comment.user._id.toString())) { %>
-                <small>
-                  <a href="/comments/destroy/<%= comment._id %>">x</a>
-                </small>
-                <% } %> Comment Content: <%= comment.content %>
-                <br />
-                <small>User Name: <%= comment.user.name %> </small>
-              </p>
-              <% } %>
-            </ul>
-          </div>
-        </div>
-      </li>
 
       <% } %>
     </ul>
   </div>
 </section>
->
+
