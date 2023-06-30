@@ -8,6 +8,7 @@ module.exports.profile = async function (req, res) {
     return res.render('user_profile', {
       title: 'User Profile',
       profile_user: user,
+      
     });
   } catch (err) {
     console.error('Error finding user:', err);
@@ -83,11 +84,17 @@ module.exports.create = function(req, res){
 
 // sign in and create a session for the user
 module.exports.createSession = function(req, res){
+  req.flash('success','Logged in Successfully');
     return res.redirect('/');
 }
 
 module.exports.destroySession = function(req, res){
-    req.logout();
-
-    return res.redirect('/');
-}
+  req.logout(function(err) {
+      if (err) {
+          console.log('Error while logging out:', err);
+          return res.redirect('/');
+      }
+      req.flash('success', 'Logged out Successfully');
+      return res.redirect('/');
+  });
+};

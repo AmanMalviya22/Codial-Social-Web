@@ -19,6 +19,7 @@ module.exports.home = async function (req, res) {
       title: "Codeial | Home",
       posts: posts,
       all_users: users,
+      user:req.user,
     });
   } catch (err) {
     console.error('Error fetching home data:', err);
