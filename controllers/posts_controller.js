@@ -1,19 +1,26 @@
 const Post = require('../models/post');
 const Comment = require('../models/comment');
 
-module.exports.create = function (req, res) {
-  Post.create({ content: req.body.content, user: req.user._id })
-    .then((post) => {
-      console.log('Post created:', post);
-      req.flash('success','post published');
-      res.redirect('/');
-    })
-    .catch((err) => {
-      req.flash('error',err);
-      console.error('Error creating post:', err);
-      res.status(500).send('Internal Server Error');
-    });
+module.exports.create = async function (req, res) {
+  try {
+    const post = await Post.create({ content: req.body.content, user: req.user._id });
+    if(req.xhr){
+      return res.status(200).json({
+        data:{
+          post:post
+        },message:"post is created"
+      })
+    }
+    console.log('Post created:', post);
+    req.flash('success', 'Post published');
+    res.redirect('/');
+  } catch (err) {
+    req.flash('error', err);
+    console.error('Error creating post:', err);
+    res.status(500).send('Internal Server Error');
+  }
 };
+
 
 
 module.exports.destroy = async function(req, res) {
