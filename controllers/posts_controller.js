@@ -35,6 +35,14 @@ module.exports.destroy = async function(req, res) {
     if (post.user.equals(req.user._id)) {
       await post.deleteOne(); // Updated: Replaced remove() with deleteOne()
       await Comment.deleteMany({ post: req.params.id });
+      if(req.xhr){
+        return res.status(200).json({
+          data:{
+            post_id:req.params.id
+          },
+          message:"post deleted "
+        })
+      }
       req.flash('success','post and associated comments are deleted');
       return res.redirect('back');
     } else {

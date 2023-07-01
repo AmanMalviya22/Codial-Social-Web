@@ -1,3 +1,5 @@
+const { $where } = require("../../models/comment");
+
 {
   //method to submit the form data for new post using ajax
 
@@ -10,8 +12,9 @@
         url: "/posts/create",
         data: newPostForm.serialize(),
         success: function (data) {
-          let newPost=newPostDom(data.data.post);
+          let newPost = newPostDom(data.data.post);
           $('#posts-list-container>ul').prepend(newPost);
+          detelePost($('.detele-post-button',newPost));
         },
         error: function (error) {
           console.log(error.responseText);
@@ -20,7 +23,7 @@
     });
   };
   // method to create a post in dom
-  let newPostDom=function(post){
+  let newPostDom = function (post) {
     return $(`<li id="post-${post._id}">
     <p>
 
@@ -55,7 +58,30 @@
       </div>
     </div>
   </li>
-  `)
+  `);
+  };
+
+
+
+
+
+
+
+
+  //method to delete a post form  DOM
+  let detelePost=function(deleteLink){
+    $(deleteLink).click(function(e){
+        e.preventDefault();
+        $.ajax({
+            type:'get',
+            url:$(deleteLink).prop('href'),
+            success:function(data){
+            $(`#post-${data.data.post_id}`).remove();    
+            },error:function(error){
+                console.log(error.responseText);
+            }
+        })
+    })
   }
   createPost();
 }
