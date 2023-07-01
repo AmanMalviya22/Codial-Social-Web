@@ -1,8 +1,8 @@
-<li>
+<li id="post-<%=post._id%>">
     <p>
       <% if(user && (user._id.toString() === post.user._id.toString())) { %>
         <small>
-          <a href="/posts/destroy/<%= post._id %>">x</a>
+          <a class="delete-post-button" href="/posts/destroy/<%= post._id %>">x</a>
         </small>
       <% } %>
       <%= post.content %>
