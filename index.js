@@ -30,6 +30,8 @@ app.use(
 app.use(express.urlencoded());
 app.use(cookieParser());
 app.use(express.static("./assets"));
+//make the uploads paths to the browser
+app.use('/uploads',express.static(__dirname+'/uploads'))
 
 const sessionStore = new MongoStore({
   mongoUrl: "mongodb://127.0.0.1:27017/codeial_development",
