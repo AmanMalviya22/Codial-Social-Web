@@ -2,6 +2,7 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
 const app = express();
+const kue = require('kue');
 const port = 8000;
 
 const db = require("./config/mongoose");
@@ -69,7 +70,8 @@ app.set("layout extractStyles", true);
 app.set("layout extractScripts", true);
 
 app.use("/", require("./routes"));
-
+kue.app.listen(3000);
+console.log(`Kue dashboard is running on port ${port}`);
 app.listen(port, function (err) {
   if (err) {
     console.log(`Error in listening ${err}`);
