@@ -8,25 +8,28 @@ let transporter = nodemailer.createTransport({
     port: 587, // 'post' should be 'port'
     secure: false,
     auth: {
-        user: 'amanaman@gmail.com',
-        password: 'a#1009998@A'
+        user: 'amanaman26802@gmail.com',
+        pass: 'huwfumwnqvlrblbt'
     }
 });
 
-let renderTemplate = (relativePath, data) => { // corrected the arrow function syntax
+let renderTemplate = (data, relative) => {
     let mailHTML;
     ejs.renderFile(
-        path.join(__dirname, '../views/mailers', relativePath),
-        data,
-        function (err, template) {
-            if (err) {
-                console.log('error in rendering template');
-            }
-            mailHTML = template;
+      path.join(__dirname, "../views/mailers", relative),
+      data,
+      function (err, template) {
+        if (err) {
+          console.log("Error in rendering template", err);
+          return;
         }
+  
+        mailHTML = template;
+      }
     );
+  
     return mailHTML;
-};
+  };
 
 module.exports = {
     transporter: transporter,
