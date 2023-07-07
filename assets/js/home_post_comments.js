@@ -1,3 +1,17 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Let's implement this via classes
 
 // this class would be initialized for every post on the page
