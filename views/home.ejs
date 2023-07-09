@@ -1,20 +1,4 @@
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <link rel="stylesheet" href="/css/home.css">
 
 <div id="home-container">
@@ -37,13 +21,21 @@
                 </ul>
             </div>
         </section>
-        
-        
+
+        <section id="user-friends-list">
+            <h4>Friends</h4>
+            <% for(u of all_users){%>
+                <p>
+                    <a href="/users/profile/<%= u.id %>"><%= u.name %></a>
+                </p>
+            <% } %>
+        </section>
         <section id="user-friends">
             <h4>Friends</h4>
             <% for(u of all_users){%>
                 <p>
                     <a href="/users/profile/<%= u.id %>"><%= u.name %></a>
+                    <a href="">Make Request</a>
                 </p>
             <% } %>
         </section>
