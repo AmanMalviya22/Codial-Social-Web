@@ -1,4 +1,5 @@
 const express = require("express");
+const env=require('./config/environment');
 const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
 const app = express();
@@ -36,10 +37,11 @@ chatSockets(chatServer);
 
 chatServer.listen(5000);
 console.log('Chat server is listening on port 5000');
+const path=require('path');
 app.use(
   sassMiddleware({
-    src: './assets/scss',
-    dest: './assets/css',
+    src: path.join(__dirname,env.asset_path,'scss'),
+    dest: path.join(__dirname,env.asset_path,'css'),
     debug: true,
     outputStyle:'extended',
     prefix: '/css'
@@ -51,7 +53,7 @@ app.use(
 
 app.use(express.urlencoded());
 app.use(cookieParser());
-app.use(express.static("./assets"));
+app.use(express.static(env.asset_path));
 //make the uploads paths to the browser
 app.use('/uploads',express.static(__dirname+'/uploads'))
 
@@ -64,7 +66,7 @@ const sessionStore = new MongoStore({
 app.use(
   session({
     name: "codial",
-    secret: "somethingBlah",
+    secret: env.session_cookie_key,
     resave: false,
     saveUninitialized: false,
     cookie: {
