@@ -1,5 +1,6 @@
 const express = require("express");
 const env=require('./config/environment');
+const logger=require('morgan');
 const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
 const app = express();
@@ -58,7 +59,7 @@ app.use(cookieParser());
 app.use(express.static(env.asset_path));
 //make the uploads paths to the browser
 app.use('/uploads',express.static(__dirname+'/uploads'))
-
+app.use(logger(env.morgan.mode,env.morgan.options));
 const sessionStore = new MongoStore({
   mongoUrl: "mongodb://127.0.0.1:27017/codeial_development",
   mongooseConnection: mongoose.connection,
