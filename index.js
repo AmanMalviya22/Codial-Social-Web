@@ -28,7 +28,7 @@ const customMware = require('./config/middleware');
 
 
 
-
+console.log(env.name);
 const chatServer = require('http').Server(app);
 
 // Call the chatSockets function and pass the chatServer object
@@ -38,16 +38,18 @@ chatSockets(chatServer);
 chatServer.listen(5000);
 console.log('Chat server is listening on port 5000');
 const path=require('path');
+
+if(env.name=='development'){
 app.use(
   sassMiddleware({
     src: path.join(__dirname,env.asset_path,'scss'),
     dest: path.join(__dirname,env.asset_path,'css'),
-    debug: true,
+    // debug: true,
     outputStyle:'extended',
     prefix: '/css'
   })
 );
-
+}
 
 
 
