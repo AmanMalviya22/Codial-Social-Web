@@ -1,9 +1,6 @@
 {
-  "C:\\Users\\Aman\\Desktop\\coding-ninja\\nodews\\codial\\assets\\css\\chat_box.css": "chat_box-7132294395.css",
-  "C:\\Users\\Aman\\Desktop\\coding-ninja\\nodews\\codial\\assets\\css\\footer.css": "footer-29f826a568.css",
-  "C:\\Users\\Aman\\Desktop\\coding-ninja\\nodews\\codial\\assets\\css\\header.css": "header-468e3f1db5.css",
-  "C:\\Users\\Aman\\Desktop\\coding-ninja\\nodews\\codial\\assets\\css\\home.css": "home-0b8f3c9fd9.css",
-  "C:\\Users\\Aman\\Desktop\\coding-ninja\\nodews\\codial\\assets\\css\\layout.css": "layout-7e7f553329.css",
-  "C:\\Users\\Aman\\Desktop\\coding-ninja\\nodews\\codial\\assets\\css\\layouts.css": "layouts-141ed3c8a3.css",
-  "C:\\Users\\Aman\\Desktop\\coding-ninja\\nodews\\codial\\assets\\css\\user_profile.css": "user_profile-feaea90467.css"
+  "C:\\Users\\Aman\\Desktop\\coding-ninja\\nodews\\codial\\assets\\js\\chat_engine.js": "chat_engine-799bd98a13.js",
+  "C:\\Users\\Aman\\Desktop\\coding-ninja\\nodews\\codial\\assets\\js\\home_post_comments.js": "home_post_comments-17d4d4c772.js",
+  "C:\\Users\\Aman\\Desktop\\coding-ninja\\nodews\\codial\\assets\\js\\home_posts.js": "home_posts-365dbd9b0a.js",
+  "C:\\Users\\Aman\\Desktop\\coding-ninja\\nodews\\codial\\assets\\js\\toggle_likes.js": "toggle_likes-e6cdd1b230.js"
 }
